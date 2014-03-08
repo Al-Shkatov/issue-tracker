@@ -1,0 +1,18 @@
+.index
+    %h1.text-center 
+        Welcome to UFB Tracker
+    .row
+        .col6.text-right 
+            You can create new ticket 
+            .row
+                =link_to 'Create', 'tickets/new',{:class=>'btn btn-primary'}
+            .abs.separator
+                or
+        .col6
+            Find your ticket by UID 
+            %form{:method=>'post', :action=>'search'}
+                .row
+                    %label{:for=>'search'}
+                    %input{:id=>'search', :name=>'search'}
+                    %input.btn.btn-submit{:type=>'submit', :value=>'Search'}
+        

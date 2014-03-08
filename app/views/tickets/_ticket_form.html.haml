@@ -1,0 +1,19 @@
+.col12
+    =form_for @ticket, url: {action: "create"} do |f|
+        .row
+            =f.label 'Your name'
+            =f.text_field :customer_name
+        .row
+            =f.label 'Your e-mail'
+            =f.text_field :customer_email
+        .row
+            =f.label :department
+            =f.select :department_id, options_from_collection_for_select(@departments, :id, :name)
+        .row
+            =f.label :subject
+            =f.text_field :subject
+        .row
+            =f.label :question
+            =f.text_area :body
+        .row.text-right
+            =f.submit :save, :class=>'btn btn-primary'
