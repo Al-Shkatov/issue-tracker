@@ -18,9 +18,17 @@
 .center{margin: 0 auto;}
 .row{margin:0;padding:0}
 .abs{position: absolute}
+
+.system-notify{width:60%;padding: 20px;font-size: 16px;color:#000000;border:1px solid #000000;box-shadow: inset #000000 0 0 2px;margin: 0 20%}
+.system-notify.level-success{border-color:red; box-shadow: inset #22aa22 0 0 2px;color:green}
+.system-notify.level-error{border-color:red; box-shadow: inset #aa2222 0 0 2px;color:red}
+
+input[type="text"].error,textarea.error{border-color:red; box-shadow: inset #aa2222 0  0 2px;}
+
 .index .separator{right:-30px;top:70px;font-size:40px;text-transform: uppercase}
 .index .col6{padding:50px}
 .tickets-edit-new{width:400px}
 .tickets-edit-new select{width:398px}
 .tickets-edit-new textarea{resize:vertical}
 .tickets-edit-new input[type="text"], .tickets-edit-new textarea{width:385px}
+

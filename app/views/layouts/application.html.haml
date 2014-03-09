@@ -10,6 +10,6 @@
         #wrapper
             .inner.center
                 - flash.each do |level, message|
-                    %div{:class=>level} = message
+                    %div{:class=>'system-notify level-'+level.to_s+' text-center'}= message
                 =yield
 

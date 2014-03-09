@@ -2,18 +2,18 @@
     =form_for @ticket, url: {action: "create"} do |f|
         .row
             =f.label 'Your name'
-            =f.text_field :customer_name
+            =f.text_field :customer_name, :class=>@ticket.errors.has_key?(:customer_name) ? 'error' : ''
         .row
             =f.label 'Your e-mail'
-            =f.text_field :customer_email
+            =f.text_field :customer_email, :class=>@ticket.errors.has_key?(:customer_email) ? 'error' : ''
         .row
             =f.label :department
             =f.select :department_id, options_from_collection_for_select(@departments, :id, :name)
         .row
             =f.label :subject
-            =f.text_field :subject
+            =f.text_field :subject, :class=>@ticket.errors.has_key?(:subject) ? 'error' : ''
         .row
             =f.label :question
-            =f.text_area :body
+            =f.text_area :body, :class=>@ticket.errors.has_key?(:body) ? 'error' : ''
         .row.text-right
             =f.submit :save, :class=>'btn btn-primary'
