@@ -5,9 +5,10 @@
     .row
         %h2.col8
             =@ticket.subject
-        %label.text-right.col4
-            Change Status to:
-            = select_tag :ticket_status_id, options_from_collection_for_select(@statuses, :id, :name,@ticket.ticket_status_id) 
+        -if @is_logged
+            %label.text-right.col4
+                Change Status to:
+                = select_tag :ticket_status_id, options_from_collection_for_select(@statuses, :id, :name,@ticket.ticket_status_id) 
     .row
         .meta
             %span.created_at
