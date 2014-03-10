@@ -32,6 +32,8 @@ input[type="text"].error,textarea.error{border-color:red; box-shadow: inset #aa2
 
 .index .separator{right:-30px;top:70px;font-size:40px;text-transform: uppercase}
 .index .col6{padding:50px}
+.index .col6 #word, .index .col6 .row .btn{margin-top:10px}
+
 .tickets-edit-new{width:400px}
 .tickets-edit-new select{width:398px}
 .tickets-edit-new textarea{resize:vertical}
