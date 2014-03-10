@@ -1,0 +1,25 @@
+:javascript
+    var per_load = #{@limit};
+    var statuses = #{@statuses.to_json};
+= javascript_include_tag "control-ticket-tabs"
+%ul.nav-tabs.nav
+    %li.active
+        %a{:href=>'#unassigned','data-toggle'=>'tab'}
+            Unassigned Tickets
+    %li
+        %a{:href=>'#open','data-toggle'=>'tab'}
+            Opened Tickets
+    %li
+        %a{:href=>'#hold','data-toggle'=>'tab'}
+            Tickets "On Hold"
+    %li
+        %a{:href=>'#closed','data-toggle'=>'tab'}
+            Closed Tickets
+.tab-content
+    .tab-pane.fade.in.active#unassigned
+    .tab-pane.fade#open
+    .tab-pane.fade#hold
+    .tab-pane.fade#closed
+.col12.text-center
+    %a{:href=>'javascript:void(0);',:class=>'load-more btn btn-primary'}
+        Load More

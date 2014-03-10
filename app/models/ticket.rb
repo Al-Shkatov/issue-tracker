@@ -16,8 +16,45 @@ class Ticket < ActiveRecord::Base
   has_one :ticket_status
   has_one :department
 
+  def self.search(what, fields = [:uid,:subject,:body])
+    str_where = []
+    fields.map { |field| str_where << field.to_s+' LIKE :word' }
+    self.where(str_where.join(' OR '),{word: what.to_s+'%'}).all
+  end
+  
+  # hardcoded by status id
+  # @todo put statuses ids in settings
+  def self.get_status_type(status_id)
+    type = case status_id
+    when 1..2
+      'open'
+    when 3
+      'hold'
+    when 4..5
+      'closed'
+    end
+  end
+  
+  def self.get_unassigned_tickets(offset)
+    get_by_status(1, offset)
+  end
+  
+  def self.get_open_tickets(offset)
+    get_by_status([1,2], offset)
+  end
+  
+  def self.get_hold_tickets(offset)
+    get_by_status(3, offset)
+  end
+  
+  def self.get_closed_tickets(offset)
+    get_by_status([4,5], offset)
+  end
   
   private
+  def self.get_by_status(status_id, offset)
+    self.find(:all,:conditions => ['ticket_status_id in (?)',status_id], limit: 10, offset: offset)
+  end
   def save_history
     history = TicketHistory.new({
         'ticket_id'=>self.id,

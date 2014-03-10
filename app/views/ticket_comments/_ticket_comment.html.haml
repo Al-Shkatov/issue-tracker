@@ -1,0 +1,13 @@
+.comment-single
+    .meta
+        -unless ticket_comment.user_id.nil?
+            =ticket_comment.user.first_name
+            =ticket_comment.user.last_name+' say:'
+        -else
+            =ticket_comment.ticket.customer_name+' say:'
+    %p
+        =ticket_comment.body
+    .controls
+        %a{:class=>'btn btn-default reply','data-comment-id'=>ticket_comment.id}
+            Reply
+    =render ticket_comment.comments

@@ -4,8 +4,10 @@
         %title
             UFB Tracker
         = stylesheet_link_tag    "bootstrap.min", "bootstrap.theme.min", "style", media: "all"
-        = javascript_include_tag "application", "bootstrap.min"
+        = javascript_include_tag "application", "bootstrap.min", "all"
         = csrf_meta_tags
+        :javascript
+            var base_url="#{root_url}";
     %body
         #wrapper
             .inner.center

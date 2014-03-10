@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140308173017) do
+ActiveRecord::Schema.define(version: 20140310005227) do
 
   create_table "departments", force: true do |t|
     t.string   "name"
@@ -31,7 +31,7 @@ ActiveRecord::Schema.define(version: 20140308173017) do
     t.integer  "ticket_id"
     t.integer  "user_id"
     t.integer  "parent_id"
-    t.text     "comment"
+    t.text     "body"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

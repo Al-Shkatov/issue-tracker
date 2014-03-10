@@ -1,0 +1,8 @@
+.comment-form
+    =form_for [@ticket,@ticket.ticket_comments.build] do |f|
+        =f.hidden_field :parent_id, :value=>0
+        .row
+            =f.label 'Type your comment'
+            =f.text_area :body
+        .row.text-right
+            =f.submit :Submit, :class=>'btn btn-primary'

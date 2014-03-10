@@ -1,0 +1,24 @@
+:javascript
+    var ticket_id = #{@ticket.id};
+= javascript_include_tag "ticket-single"
+.ticket-single
+    .row
+        %h2.col8
+            =@ticket.subject
+        %label.text-right.col4
+            Change Status to:
+            = select_tag :ticket_status_id, options_from_collection_for_select(@statuses, :id, :name,@ticket.ticket_status_id) 
+    .row
+        .meta
+            %span.created_at
+                =@ticket.created_at.strftime('%d.%m.%Y')
+            %span.author
+                =@ticket.customer_name
+    .row
+        .body
+            %p
+                =@ticket.body
+    - unless @ticket_comments.nil?
+        %h3 Comments
+        =render @ticket_comments
+    =render 'comment_form'

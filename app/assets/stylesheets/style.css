@@ -12,7 +12,7 @@
 .col12{width: 100%}
 
 .col1,.col2,.col3,.col4,.col5,.col6,.col7,.col8,.col9,.col10,
-.col11,.col12{float:left;box-sizing:border-box;-moz-box-sizing: border-box;position: relative}
+.col11,.col12{float:left;box-sizing:border-box;-moz-box-sizing: border-box;position: relative;vertical-align: top}
 
 .inner{width:1200px;}
 .center{margin: 0 auto;}
@@ -20,7 +20,8 @@
 .abs{position: absolute}
 
 .system-notify{width:60%;padding: 20px;font-size: 16px;color:#000000;border:1px solid #000000;box-shadow: inset #000000 0 0 2px;margin: 0 20%}
-.system-notify.level-success{border-color:red; box-shadow: inset #22aa22 0 0 2px;color:green}
+.system-notify.level-success{border-color:green; box-shadow: inset #22aa22 0 0 2px;color:green}
+.system-notify.level-notice{border-color:yellow; box-shadow: inset #22aaaa 0 0 2px;color:yellow}
 .system-notify.level-error{border-color:red; box-shadow: inset #aa2222 0 0 2px;color:red}
 
 input[type="text"].error,textarea.error{border-color:red; box-shadow: inset #aa2222 0  0 2px;}
@@ -31,4 +32,9 @@ input[type="text"].error,textarea.error{border-color:red; box-shadow: inset #aa2
 .tickets-edit-new select{width:398px}
 .tickets-edit-new textarea{resize:vertical}
 .tickets-edit-new input[type="text"], .tickets-edit-new textarea{width:385px}
+
+.comment-form{width:300px;margin-top: 20px}
+.comment-form textarea{resize:verticall;width: 100%}
+
+.comment-single .comment-single {margin-left: 30px}
 

@@ -1,0 +1,12 @@
+.login-form
+    %h1
+        Login
+    =form_tag control_login_path do
+        .row
+            =label_tag :login
+            =text_field_tag :login
+        .row
+            =label_tag :password
+            =password_field_tag :password
+        .row 
+            =submit_tag :login, :class=>'btn btn-submit', :value=>'Login'

@@ -10,9 +10,7 @@
                 or
         .col6
             Find your ticket by UID 
-            %form{:method=>'post', :action=>'search'}
+            =form_tag search_path do
                 .row
-                    %label{:for=>'search'}
-                    %input{:id=>'search', :name=>'search'}
-                    %input.btn.btn-submit{:type=>'submit', :value=>'Search'}
-        
+                    =text_field_tag :search
+                    =submit_tag :search, :class=>'btn btn-submit', :value=>'Search'

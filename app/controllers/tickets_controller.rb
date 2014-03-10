@@ -42,13 +42,20 @@ class TicketsController < ApplicationController
   end
 
   def show
-    @ticket = Ticket.find(params[:id])
+    @ticket = Ticket.find(params[:id]) unless params[:id].nil?
+    @ticket = Ticket.find_by(uid: params[:uid]) unless params[:uid].nil?
+    @ticket_comments = @ticket.ticket_comments.parent_comments
+    @statuses = TicketStatus.all
   end
   
   def destroy
   end
 
   def change_status
+    ticket = Ticket.find(params[:ticket_id])
+    ticket.ticket_status_id = params[:status_id]
+    ticket.save
+    render :json=>{type: Ticket.get_status_type(params[:status_id].to_i)}
   end
   private 
   def init_departments

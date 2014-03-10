@@ -1,8 +1,22 @@
 IssueTracker::Application.routes.draw do
-  resources :tickets
   root 'index#index'
   get "index/index"
-
+  
+  post "search" => 'search#search'
+  post "search/advanced_search"
+  
+  resources :tickets do
+    resources :ticket_comments
+  end
+  get 'ticket/:uid' , to: 'tickets#show', constraints: { uid: /([A-Z]{3}\-\d{3}\-){2}[A-Z]{3}/ }, as: :ticket_uid
+  post 'tickets/change_status'
+  
+  get "control" => "control#index"
+  get "control/index"
+  get "control/auth"
+  get "control/logout"
+  post "control/get_tickets"
+  post "control/login"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
