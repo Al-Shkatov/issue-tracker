@@ -1,0 +1,15 @@
+%center
+    %table{:width=>'100%', :cellpadding=>'0', :cellspacing=>'0'}
+        %tr
+            %td{:align=>'center'}
+                %table{:width=>'600', :cellpadding=>'0', :cellspacing=>'0'}
+                    %tr
+                        %td{:align=>'left'}
+                            %h1{:style=>'font-family:Arial, sans-serif;font-size:32px'}
+                                Added response on your issue 
+                                =@ticket.uid
+                            %p{:style=>'font-family:Arial, sans-serif;font-size:14px'}
+                                =@comment.body[0,100]
+                            %p{:style=>'font-family:Arial, sans-serif;font-size:14px'}
+                                You can view full comment by clicking a link below
+                                =link_to 'View comment', ticket_uid_url(@ticket.uid)

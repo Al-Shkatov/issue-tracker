@@ -1,2 +1,18 @@
-Test mail
-=@ticket.uid
+%center
+    %table{:width=>'100%', :cellpadding=>'0', :cellspacing=>'0'}
+        %tr
+            %td{:align=>'center'}
+                %table{:width=>'600', :cellpadding=>'0', :cellspacing=>'0'}
+                    %tr
+                        %td{:align=>'left'}
+                            %h1{:style=>'font-family:Arial, sans-serif;font-size:32px'}
+                                You create new ticket
+                                =@ticket.uid
+                            %p{:style=>'font-family:Arial, sans-serif;font-size:14px'}
+                                You can view your ticket by clicking a link below
+                                %br
+                                =link_to 'View ticket', ticket_uid_url(@ticket.uid)
+                            %p{:style=>'font-family:Arial, sans-serif;font-size:14px'}
+                                Or you can search or create new ticket on
+                                %br
+                                =link_to 'Home Page', root_url
