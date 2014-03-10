@@ -7,6 +7,15 @@
             closed: 0
         };
         var controls = ['reply', 'change-status', 'details'];
+        var status_name = function(status_id){
+            if(typeof cache.statuses_names === 'undefined'){
+                cache.statuses_names = {};
+                for(var i in statuses){
+                    cache.statuses_names[statuses[i].id] = statuses[i].name;
+                }
+            }
+            return cache.statuses_names[status_id];
+        };
         var load_tickets = function(type, offset) {
             $.ajax({
                 type: 'POST',
@@ -27,7 +36,8 @@
         };
         var tpl_ticket = function(ticket) {
             var container = $('<div />', {'class': 'control-ticket-item'});
-            container.append($('<h4 />', {'class': 'ticket-title', text: ticket.subject}));
+            container.append($('<h4 />', {'class': 'ticket-title', text: ticket.subject+' '})
+                    .append($('<span />', {'class': 'ticket-status status_'+ticket.ticket_status_id, text: status_name(ticket.ticket_status_id)})));
             container.append($('<p />', {text: ticket.body}));
             container.append($('<input />', {name: 'ticket_data', type: 'hidden', value: JSON.stringify(ticket)}));
             var control = $('<div />', {'class': 'controls'});
@@ -48,10 +58,10 @@
 
         $('a[data-toggle="tab"]').on('shown.bs.tab', function(e) {
             var type = $(e.target).attr('href').replace('#', '');
-            if (cache[type] === 0) {
-                load_tickets(type, cache[type]);
-                cache[type] += per_load;
-            }
+            cache[type] = 0;
+            $('#'+type).empty();
+            load_tickets(type, cache[type]);
+            cache[type] += per_load;
         });
         $('.load-more').click(function() {
             var type = $('.tab-pane.active').attr('id');
@@ -102,9 +112,16 @@
         });
         $(document).delegate('.control-button', 'shown.bs.popover', function() {
             var ticket = JSON.parse($(this).parents('.control-ticket-item').find('input[type="hidden"]').val());
+            var self = $(this);
             $(this).parent()
                     .find('input[name="change_status"][value="' + ticket.ticket_status_id + '"]')
                     .attr('checked', 'checked');
+            $('body').on('click',function(e){
+                if(!$(e.target).is('.popover') && $(e.target).parents('.popover').length===0){
+                    self.popover('hide');
+                    $('body').off('click');
+                }
+            });
         });
         var control_methods = {
             details: function(elem, ticket) {
@@ -118,11 +135,13 @@
                     elem.popover({
                         html: true,
                         title: 'Select status',
+                        trigger: 'manual',
                         content: function() {
                             return format_statuses();
                         }
-                    }).popover('show');
+                    });
                 }
+                elem.popover('show');
             }
         };
         var format_statuses = function() {

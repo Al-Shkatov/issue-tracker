@@ -1,8 +1,10 @@
 .ticket-list-item
-    %h3
+    %h4
         =ticket.subject
+        %span{:class=>'ticket-status status_'+ticket.ticket_status_id.to_s}
+            =ticket.ticket_status.name
     %p
         =ticket.body[0..100]
     .controls
-        =link_to 'Add Comment', ticket_uid_path(ticket.uid).to_s+'#comments', :class=>'btn'
-        =link_to :Details, ticket_uid_path(ticket.uid), :class=>'btn' 
+        =link_to :reply, ticket_uid_path(ticket.uid).to_s+'#comments', :class=>'btn'
+        =link_to :details, ticket_uid_path(ticket.uid), :class=>'btn' 

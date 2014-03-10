@@ -3,6 +3,8 @@
 = javascript_include_tag "ticket-single"
 .ticket-single
     .row
+        = link_to 'Back', :back
+    .row
         %h2.col8
             =@ticket.subject
         -if @is_logged
@@ -23,3 +25,5 @@
         %h3 Comments
         =render @ticket_comments
     =render 'comment_form'
+    .row
+        = link_to 'Back', :back

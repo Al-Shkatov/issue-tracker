@@ -13,8 +13,8 @@ class Ticket < ActiveRecord::Base
   
   has_many :ticket_histories
   has_many :ticket_comments
-  has_one :ticket_status
-  has_one :department
+  belongs_to :ticket_status
+  belongs_to :department
 
   def self.search(what, page, fields = [:uid,:subject,:body])
     return [] if what.nil?
@@ -54,7 +54,7 @@ class Ticket < ActiveRecord::Base
   
   private
   def self.get_by_status(status_id, offset)
-    self.find(:all,:conditions => ['ticket_status_id in (?)',status_id], limit: 10, offset: offset, order: 'id DESC')
+    self.find(:all,:conditions => ['ticket_status_id in (?)',status_id], limit: 10, offset: offset, order: 'updated_at DESC')
   end
   def save_history
     history = TicketHistory.new({
@@ -70,7 +70,12 @@ class Ticket < ActiveRecord::Base
   end
   
   def generate_uid
-    self.uid=chars(3)+'-'+numbers(3)+'-'+chars(3)+'-'+numbers(3)+'-'+chars(3) if self.uid.nil?
+    self.uid = set_uid
+  end
+  def set_uid
+    uid = chars(3)+'-'+numbers(3)+'-'+chars(3)+'-'+numbers(3)+'-'+chars(3)
+    return set_uid unless Ticket.find_by(uid: uid).nil?
+    return uid
   end
   def chars(len)
     ('A'..'Z').to_a.shuffle[0,len].join.to_s
