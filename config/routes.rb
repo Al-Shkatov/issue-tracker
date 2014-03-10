@@ -2,8 +2,8 @@ IssueTracker::Application.routes.draw do
   root 'index#index'
   get "index/index"
   
-  post "search" => 'search#search'
-  post "search/advanced_search"
+  match "search" => 'search#search', via: [:get, :post]
+  match "search/advanced_search", as: :advanced_search, via: [:get, :post]
   
   resources :tickets do
     resources :ticket_comments

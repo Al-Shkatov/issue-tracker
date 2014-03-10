@@ -16,10 +16,10 @@ class Ticket < ActiveRecord::Base
   has_one :ticket_status
   has_one :department
 
-  def self.search(what, fields = [:uid,:subject,:body])
+  def self.search(what, page, fields = [:uid,:subject,:body])
     str_where = []
     fields.map { |field| str_where << field.to_s+' LIKE :word' }
-    self.where(str_where.join(' OR '),{word: what.to_s+'%'}).all
+    self.where(str_where.join(' OR '),{word: '%'+what.to_s+'%'}).paginate(page: page, per_page: 10)
   end
   
   # hardcoded by status id

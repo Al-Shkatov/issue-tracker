@@ -37,4 +37,6 @@ input[type="text"].error,textarea.error{border-color:red; box-shadow: inset #aa2
 .comment-form textarea{resize:verticall;width: 100%}
 
 .comment-single .comment-single {margin-left: 30px}
+.nav form{margin:3px 0 0 0}
+.nav form input[type="text"]{margin: 0;height: 17px}
 

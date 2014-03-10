@@ -1,2 +1,9 @@
-%h1 Search#advanced-search
-%p Find me in app/views/search/advanced-search.html.haml
+.row
+    %h1.col7 
+        Search result for 
+        %emphasis
+            =@word
+    .col4
+        =render 'search/search_form', :path_to_submit=>advanced_search_path
+=render 'tickets/list'
+=will_paginate @tickets, :params=>{word: @word}

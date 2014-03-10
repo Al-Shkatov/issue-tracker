@@ -3,3 +3,4 @@
     %emphasis
         =@word
 =render 'tickets/list'
+=will_paginate @tickets, :params=>{word: @word}

@@ -4,5 +4,5 @@
     %p
         =ticket.body[0..100]
     .controls
-        =link_to 'Add Comment', ticket_path(ticket).to_s+'#comments', :class=>'btn'
-        =link_to :Details, ticket_path(ticket), :class=>'btn' 
+        =link_to 'Add Comment', ticket_uid_path(ticket.uid).to_s+'#comments', :class=>'btn'
+        =link_to :Details, ticket_uid_path(ticket.uid), :class=>'btn' 

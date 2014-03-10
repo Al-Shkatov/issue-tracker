@@ -15,6 +15,8 @@
     %li
         %a{:href=>'#closed','data-toggle'=>'tab'}
             Closed Tickets
+    %li
+        =render 'search/search_form', :path_to_submit=>advanced_search_path
 .tab-content
     .tab-pane.fade.in.active#unassigned
     .tab-pane.fade#open
