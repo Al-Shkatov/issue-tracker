@@ -17,7 +17,7 @@ class TicketsController < ApplicationController
     if @ticket.save
       TicketNotify.new_ticket(@ticket).deliver
       flash[:success] = 'Your ticket has been created. Ticket UID is '+@ticket.uid
-      redirect_to @ticket
+      redirect_to ticket_uid_path(@ticket.uid)
     else
       flash[:error] = 'Please correct highlighted fields'
       render 'new'
@@ -30,7 +30,7 @@ class TicketsController < ApplicationController
     if @ticket.save
       TicketNotify.changes_in_ticket(@ticket).deliver
       flash[:success] = 'Ticket has been changed'
-      redirect_to @ticket
+      redirect_to ticket_uid_path(@ticket.uid)
     else
       flash[:error] = 'Please correct highlighted fields'
       render 'edit'
