@@ -10,9 +10,21 @@
             var base_url="#{root_url}";
     %body
         #wrapper
+            .header.center.text-center
+                %span UFB
+                Tracker
             .inner.center
                 - flash.each do |level, message|
                     %div{:class=>'system-notify level-'+level.to_s+' text-center'}= message
                 =yield
                 -if (Rails.env.development? || Rails.env.test?) && !@debug_params.nil? 
                     =@debug_params.inspect
+            .push
+        .footer.center
+            .row
+                .col6
+                    Developed by 
+                    %a{:href=>'mailto:o.shkatov@live.ru'}
+                        Alexander Shkatov
+                .col6.text-right
+                    &copy; All rights reserved

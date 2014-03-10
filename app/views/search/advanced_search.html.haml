@@ -1,9 +1,15 @@
-.row
-    %h1.col7 
-        Search result for 
-        %emphasis
-            =@word
-    .col4
-        =render 'search/search_form', :path_to_submit=>advanced_search_path
-=render 'tickets/list'
-=will_paginate @tickets, :params=>{word: @word}
+.search
+    %ul.nav-tabs.nav
+        %li.col7
+            %h1 
+                Search result for 
+                %em
+                    =@word
+        %li.col4
+            =render 'search/search_form', :path_to_submit=>search_path
+    =render 'tickets/list'
+    -if @tickets.any?
+        =will_paginate @tickets, :params=>{word: @word}
+    -else
+        %h3
+            Search word must be bigger than 2 symbols

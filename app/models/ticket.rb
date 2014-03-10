@@ -17,6 +17,7 @@ class Ticket < ActiveRecord::Base
   has_one :department
 
   def self.search(what, page, fields = [:uid,:subject,:body])
+    return [] if what.nil?
     str_where = []
     fields.map { |field| str_where << field.to_s+' LIKE :word' }
     self.where(str_where.join(' OR '),{word: '%'+what.to_s+'%'}).paginate(page: page, per_page: 10)
@@ -53,7 +54,7 @@ class Ticket < ActiveRecord::Base
   
   private
   def self.get_by_status(status_id, offset)
-    self.find(:all,:conditions => ['ticket_status_id in (?)',status_id], limit: 10, offset: offset)
+    self.find(:all,:conditions => ['ticket_status_id in (?)',status_id], limit: 10, offset: offset, order: 'id DESC')
   end
   def save_history
     history = TicketHistory.new({
