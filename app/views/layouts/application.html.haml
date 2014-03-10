@@ -14,4 +14,5 @@
                 - flash.each do |level, message|
                     %div{:class=>'system-notify level-'+level.to_s+' text-center'}= message
                 =yield
-
+                -if (Rails.env.development? || Rails.env.test?) && !@debug_params.nil? 
+                    =@debug_params.inspect

@@ -32,10 +32,4 @@ class ControlController < ApplicationController
   def require_login
     redirect_to control_auth_path unless is_logged?
   end
-  def is_logged?
-    !current_user.nil?
-  end
-  def current_user
-    @current_user ||= session[:current_user_id] && User.find_by_id(session[:current_user_id])
-  end
 end

@@ -5,7 +5,14 @@ class ApplicationController < ActionController::Base
   
   
   def dbg(*params)
-    @params=params
-    render 'debug/debug'
+    @debug_params=params if Rails.env.development? || Rails.env.test?
+  end
+  
+  protected
+  def is_logged?
+    !current_user.nil?
+  end
+  def current_user
+    @current_user ||= session[:current_user_id] && User.find_by_id(session[:current_user_id])
   end
 end
