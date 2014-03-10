@@ -1,4 +1,5 @@
 .comment-form
+    %a{:name=>'comment'}
     =form_for [@ticket,@ticket.ticket_comments.build] do |f|
         =f.hidden_field :parent_id, :value=>0
         .row
