@@ -2,7 +2,7 @@ require 'test_helper'
 
 class CustomerCanCreateAndFindTicketsTest < ActionDispatch::IntegrationTest
   fixtures :all
-  test "customer create new ticket and shown it" do
+  test "customer create new ticket and see it" do
     get '/tickets/new'
     post_via_redirect '/tickets', ticket: {
       customer_name: 'test customer',
@@ -13,12 +13,12 @@ class CustomerCanCreateAndFindTicketsTest < ActionDispatch::IntegrationTest
     }
     message = flash[:success]
     match = message.match(/([A-Z]{3}\-\d{3}\-){2}[A-Z]{3}/)
-    assert_not_nil match, 'flash message has uid'
+    assert_not_nil match #'flash message has uid'
     
     uid = match[0]
-    assert_equal '/ticket/'+uid.to_s, path, 'redirect to required url(ticket_uid_path)'
+    assert_equal '/ticket/'+uid.to_s, path #'redirect to required url(ticket_uid_path)'
     
-    assert_not_nil Ticket.find_by_uid(uid), 'new ticket added to db'
+    assert_not_nil Ticket.find_by_uid(uid) #'new ticket added to db'
   end
   test "customer can find ticket" do
     get '/'

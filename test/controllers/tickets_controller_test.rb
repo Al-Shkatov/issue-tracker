@@ -33,6 +33,7 @@ class TicketsControllerTest < ActionController::TestCase
   end
   
   test "should change ticket status" do
+    session[:current_user_id] = User.first.id
     status = 2
     post :change_status,{ticket_id: 4, status_id: status}
     assert_response :success

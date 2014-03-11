@@ -31,10 +31,12 @@ class TicketsController < ApplicationController
 
   def change_status
     ticket = Ticket.find(params[:ticket_id])
-    ticket.ticket_status_id = params[:status_id]
-    ticket.user_id = session[:current_user_id]
-    ticket.save
-    render :json=>{type: Ticket.get_status_type(params[:status_id].to_i)}
+    if is_logged?
+      ticket.ticket_status_id = params[:status_id]
+      ticket.user_id = session[:current_user_id]
+      ticket.save
+    end
+    render :json=>{type: Ticket.get_status_type(ticket.ticket_status_id)}
   end
   private 
   def init_departments
