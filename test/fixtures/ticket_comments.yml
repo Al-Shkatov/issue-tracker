@@ -3,11 +3,11 @@
 one:
   ticket_id: 
   user_id: 
-  parent: 
-  comment: MyText
+  parent_id: 
+  body: MyText
 
 two:
   ticket_id: 
   user_id: 
-  parent: 
-  comment: MyText
+  parent_id: 
+  body: MyText

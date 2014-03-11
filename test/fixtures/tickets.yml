@@ -1,19 +1,30 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  uid: MyString
+  uid: ABC-123-ABC-123-ABC
   customer_name: MyString
   customer_email: MyString
   subject: MyString
   body: MyText
-  ticket_status_id: 
-  department_id: 
+  ticket_status_id: 1
+  department_id: 1
 
 two:
-  uid: MyString
+  uid: ZXY-231-ABC-321-CBA
   customer_name: MyString
   customer_email: MyString
   subject: MyString
   body: MyText
-  ticket_status_id: 
-  department_id: 
+  ticket_status_id: 1
+  department_id: 1
+
+three:
+  id: 4
+  uid: ZXY-231-ABC-321-CBA
+  customer_name: test customer
+  customer_email: test@test.com
+  subject: test subject
+  body: test question
+  ticket_status_id: 1
+  department_id: 1
+    

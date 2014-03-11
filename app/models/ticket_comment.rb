@@ -6,6 +6,6 @@ class TicketComment < ActiveRecord::Base
   validates :body, presence: true, length:{in:5..500}
   
   def self.parent_comments
-    self.where('parent_id = ?', 0).all
+    self.where('parent_id = ?', 0).load
   end
 end
